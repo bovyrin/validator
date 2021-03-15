@@ -7,11 +7,13 @@ Describe schema of your data and then parse input data using described schema.
 ```php
 <?php
 
-\Validator::parse(DATA_SCHEMA)($input);
+use sbovyrin\Validator;
+
+Validator::parse(SCHEMA)($input);
 ```
 
 Where:
-- `DATA_SCHEMA` describes rules for input parsing
+- `SCHEMA` describes rules for input parsing
 - `$input` some data from one of app's forms
 
 
