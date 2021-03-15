@@ -1,0 +1,21 @@
+{
+    "name": "sbovyrin/validator",
+    "description": "Describe schema of your data and then parse input data using described schema",
+    "type": "library",
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "license": "BSD-3",
+    "authors": [
+        {
+            "name": "Sergey Bovyrin",
+            "email": "sbovyrin@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Validator\\": "src/"
+        }   
+    },
+    "minimum-stability": "dev"
+}
