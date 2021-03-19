@@ -24,6 +24,8 @@ class Validator
             },
             'min' => function ($v, array $rules) {
                 switch ($rules['type']) {
+                    case 'number':
+                        return !is_null($v) && $v >= $rules['min'];
                     case 'text':
                         return !is_null($v) && strlen($v) >= $rules['min'];
                     case 'email':
@@ -32,6 +34,8 @@ class Validator
             },
             'max' => function ($v, array $rules) {
                 switch ($rules['type']) {
+                    case 'number':
+                        return !is_null($v) && $v <= $rules['max'];
                     case 'text':
                         return !is_null($v) && strlen($v) <= $rules['max'];
                     case 'email':
