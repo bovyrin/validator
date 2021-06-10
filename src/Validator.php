@@ -20,7 +20,7 @@ class Validator
             case 'email':
             case 'text': return is_string($val);
             case 'number': return is_numeric($val);
-            case 'boolean': return $val == 1 || $val == 0;
+            case 'boolean': return !is_null($val) && ($val == 1 || $val == 0);
         }
 
         return false;
@@ -89,13 +89,16 @@ class Validator
      */
     static function parse(array $rules, array $dflt = []): callable
     {
-        $_parse = static fn ($v, $_rules): array => array_map(
-            static fn ($p, $x) => self::$p($v, $x)
-                ? [$v, []]
-                : [$v, [$p => $x]],
-            array_keys($_rules),
-            $_rules
-        );
+        $_parse = static fn ($v, $_rules): array =>
+            empty($_rules)
+                ? [[$v, []]]
+                : array_map(
+                    static fn ($p, $x) => self::$p($v, $x)
+                        ? [$v, []]
+                        : [$v, [$p => $x]],
+                    array_keys($_rules),
+                    $_rules
+                );
 
         $_output = static fn (array $res): array => [
             'val' => $res[0][0],
