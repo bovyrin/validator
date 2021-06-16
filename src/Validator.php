@@ -10,7 +10,7 @@ class Validator
     private static function required($val, bool $isRequired): bool
     {
         if ($isRequired) {
-            if (is_string($val)) return !empty($val);
+            if (is_string($val) && !is_numeric($val)) return !empty($val);
             return !is_null($val);
         }
 
